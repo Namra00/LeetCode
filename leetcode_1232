@@ -1,0 +1,41 @@
+class Solution(object):
+    def checkStraightLine(self, coordinates):
+        """
+        :type coordinates: List[List[int]]
+        :rtype: bool
+        """
+        x = (coordinates[1][1] - coordinates[0][1])
+        y = float(coordinates[1][0]-coordinates[0][0])
+        
+        p = coordinates[0][1]
+        q = coordinates[0][0]
+        flag = True
+        
+        if y==0:
+             for i in range (2,1001):
+                if coordinates[1][0]!=coordinates[i][0]:
+                    return False
+                return True
+        slope = x/y
+        
+       
+        for i in range (2,len(coordinates)):
+            if (slope == (coordinates[i][1] - p)/float(coordinates[i][0]-q)):
+                flag = True
+            else:
+                return False
+        return flag
+    
+    
+        # n = len(coordinates)
+        # if n < 2:
+        #     return True
+        # x0, y0 = coordinates[0]
+        # x1, y1 = coordinates[1]
+        # dx = x1 - x0
+        # dy = y1 - y0
+        # for i in range(2,n):
+        #     x, y = coordinates[i]
+        #     if (x-x0)*dy != (y-y0)*dx:
+        #         return False
+        # return True

@@ -1,0 +1,47 @@
+from collections import defaultdict
+class Solution(object):
+    def dfs(self,level,parent,s):
+        visi[s] = True
+        node_level[s] = level
+        count = 1
+        for child in g[s]:
+            print(g[s],"curnode s:",s,level,"curr and child level:",node_level[s],node_level[child],"child:",child,parent,"count:",count)
+            if child == parent:
+                count += 1
+                continue
+            if not visi[child]:
+                print("in rec")
+                count += 1
+                self.dfs(level+1,s,child)
+            print("Out of the loop:")
+            print(g[s],"curnode s:",s,level,"curr and child level:",node_level[s],node_level[child],"child:",child,parent,"count:",count)
+            node_level[s] = min(node_level[s],node_level[child])
+            print(g[s],"curnode s:",s,level,"curr and child level:",node_level[s],node_level[child],"child:",child,parent,"count:",count)
+            print("furthermore")
+            count += 1
+            if level < node_level[child]:
+                print("in")
+                ans.append([s,child])
+            print("done")
+    def criticalConnections(self, n, connections):
+        """
+        :type n: int
+        :type connections: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        if n == 0:
+            return []
+        
+        global g,node_level,visi,ans,dfs
+        g = defaultdict(list)
+        for edge in connections:
+            g[edge[0]].append(edge[1])
+            g[edge[1]].append(edge[0])
+        
+        node_level = [i for i in range(n)]
+        visi = [False for i in range(n)]
+        ans = []
+        print(g)
+        self.dfs(0,-1,connections[0][0])
+        return ans
+        
