@@ -1,0 +1,143 @@
+from collections import defaultdict 
+
+class Solution(object):
+    def fourSumCount(self, A, B, C, D):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :type C: List[int]
+        :type D: List[int]
+        :rtype: int
+        """
+#         auxL = []
+#         n = len(A)
+#         sum = 0
+        
+#         for i in range(n):
+#             for j in range(n):
+#                 for k in range(n):
+#                     sum = B[i] + C[j] + D[k]
+#                     auxL.append(sum)
+#                     sum = 0
+        
+#         A.sort()
+#         count = 0
+        
+#         for i in range(len(auxL)):
+#             start = 0
+#             end = n-1
+#             #print (auxL[i])
+#             while start <= end:
+#                 mid = (start + end)/2
+#                 # print(i,start,mid,end)
+#                 # print (auxL,auxL[i],A[mid],count)
+                
+#                 if auxL[i]+A[mid]==0:
+#                     count += 1
+#                     p = 1
+#                     q = 1
+#                     while ((mid+p<=end) and A[mid]==A[mid+p]):
+#                         count += 1
+#                         p += 1
+#                     while ((mid-q>=start) and A[mid]==A[mid-q]):
+#                         count += 1
+#                         q += 1
+#                     break
+                
+#                 elif auxL[i]+A[mid] > 0:
+#                     end = mid-1
+                    
+#                 else:
+#                     start = mid+1
+#                 #print(i,start,mid,end,count)
+        
+#         return count 
+
+
+#         auxL1 = {}
+#         auxL2 = {}
+#         n = len(A)
+#         sum = 0
+        
+#         for i in range(n):
+#             for j in range(n):
+#                 sum = A[i] + B[j]
+#                 if sum in auxL1.keys():
+#                     auxL1[sum] += 1
+#                 else:
+#                     auxL1[sum] = 1
+                
+#                 sum = 0
+         
+#         count = 0
+        
+#         for i in range(n):
+#             for j in range(n):
+#                 sum = 0 -(C[i] + D[j])
+#                 if sum in auxL1.keys():
+#                     count += auxL1[sum]
+                
+#                 sum = 0
+                
+#         return count
+
+#         auxL1 = defaultdict(int)
+#         n = len(A)
+#         sum = 0
+        
+#         for i in range(n):
+#             for j in range(n):
+#                 sum = A[i] + B[j]
+#                 auxL1[sum] += 1
+#                 sum = 0
+         
+#         count = 0
+        
+#         for i in range(n):
+#             for j in range(n):
+#                 sum = 0 -(C[i] + D[j])
+#                 if auxL1[sum]:
+#                     count += auxL1[sum]
+#                 sum = 0
+                
+#         return count
+    
+
+        # dictAB = {}
+        # counter = 0
+        # for i in A:
+        #     for j in B:
+        #         if (i+j) not in dictAB:
+        #             dictAB[i+j] = 1
+        #         else:
+        #             dictAB[i+j] += 1
+        # for k in C:
+        #     for p in D:
+        #         if -(k+p) in dictAB:
+        #             counter += dictAB[-(k+p)]
+        # return counter
+       
+
+        auxL1 = defaultdict(int)
+        n = len(A)
+        sum = 0
+        
+        for i in A:
+            for j in B:
+                auxL1[i+j] += 1           
+         
+        count = 0
+        
+        for i in C:
+            for j in D:
+                if auxL1[0-i-j]:
+                    count += auxL1[0-i-j]    
+                
+        return count
+        
+                
+        
+                    
+            
+            
+        
